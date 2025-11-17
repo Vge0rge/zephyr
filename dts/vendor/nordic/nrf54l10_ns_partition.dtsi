@@ -15,19 +15,21 @@
 	 * header flash_layout.h of the relevant platform. Any updates in the layout
 	 * needs to happen both in the flash_layout.h and in this file at the same time.
 	 */
-	reserved-memory {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		ranges;
-
-		sram0_s: image_s@20000000 {
+@cpuapp_sram {
+		sram0_s: image_s@0 {
+			#address-cells = <1>;
+			#size-cells = <1>;
 			/* Secure image memory */
-			reg = <0x20000000 DT_SIZE_K(96)>;
+			reg = <0x0 DT_SIZE_K(96)>;
+			ranges = <0x0 0x0 DT_SIZE_K(96)>;
 		};
 
-		sram0_ns: image_ns@20018000 {
+		sram0_ns: image_ns@18000 {
+			#address-cells = <1>;
+			#size-cells = <1>;
 			/* Non-Secure image memory */
-			reg = <0x20018000 DT_SIZE_K(96)>;
+			reg = <0x18000 DT_SIZE_K(96)>;
+			ranges = <0x0 0x18000 DT_SIZE_K(96)>;
 		};
 	};
 };
